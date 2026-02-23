@@ -34,7 +34,11 @@
     --scrawl: 'Rock Salt', cursive;
   }
 
-  html { scroll-behavior: smooth; }
+  html {
+    scroll-behavior: smooth;
+    width: 100%;
+    overflow-x: clip;
+  }
 
   /* SVG vandalism background */
   body::before {
@@ -56,6 +60,24 @@
     color: var(--text);
     line-height: 1.7;
     overflow-x: hidden;
+  }
+
+  html, body {
+    max-width: 100%;
+    overflow-x: clip;
+  }
+
+  .layout-grid, .col-left, .col-right, .container,
+  section, .promise-block, .vibe-stack, .agent-onboard,
+  .signer-list, .signer-entry, .copy-block {
+    min-width: 0;
+  }
+
+  .hero-sub, .body-text, .beliefs li span, .sig-block .crew,
+  .signer-entry .agent-wallet, .agent-desc, .pricing-tier-desc,
+  .copy-block code {
+    overflow-wrap: anywhere;
+    word-break: break-word;
   }
 
   ::selection {
@@ -1092,8 +1114,13 @@
   }
 
   /* Responsive */
+  @media (max-width: 1024px) {
+    .vibe-stack .margin-note { display: none; }
+  }
+
   @media (max-width: 640px) {
     h1 { letter-spacing: -2px; }
+    .layout-grid, .container { padding-left: 16px; padding-right: 16px; }
     section { padding: 72px 0; }
     .promise-block { padding: 32px 24px; }
     .beliefs li { font-size: 15px; padding: 24px 0; gap: 16px; }
@@ -1107,6 +1134,17 @@
       padding: 14px 24px;
       width: 100%;
       text-align: center;
+    }
+
+    .signer-entry {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 6px;
+    }
+
+    .signer-entry .signed-date {
+      white-space: normal;
+      text-align: left;
     }
   }
 </style>
